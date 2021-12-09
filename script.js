@@ -16,13 +16,13 @@ function computerPlay() {
 }
 
 function playRound(playerSelection, computerSelection) {
-  const playerChoiceLower = playerSelection.toLowerCase();
+  const playerChoiceLower = playerSelection.toLowerCase().trim();
   const playerChoiceCap =
     playerChoiceLower.charAt(0).toUpperCase() + playerChoiceLower.slice(1);
   const computerChoice = computerSelection;
   console.log("Player: " + playerChoiceCap);
   if (playerChoiceCap == "Rock" && computerChoice == "Rock") {
-    console.log("Rock vs Rock. It's a tie!");
+    console.log("It's a tie! Rock vs Rock.");
     return "tie";
   } else if (playerChoiceCap == "Rock" && computerChoice == "Paper") {
     console.log("You lose! Paper beats Rock.");
@@ -49,7 +49,7 @@ function playRound(playerSelection, computerSelection) {
     console.log("It's a tie! Scissors vs Scissors.");
     return "tie";
   } else {
-    console.log("Please input a valid answer.");
+    alert("Please input a valid answer and try again.");
     return "invalid";
   }
 }
@@ -70,6 +70,8 @@ function game() {
       playerScore += 1;
     } else if (round == "lose") {
       computerScore += 1;
+    } else if (round == "invalid") {
+      i -= 1;
     }
     console.log(
       "Score: Player: " + playerScore + " Computer: " + computerScore
