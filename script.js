@@ -1,18 +1,25 @@
 let playerScore = 0;
 let computerScore = 0;
 let roundNumber = 0;
+let computerPick = "";
+let playerPick = "";
+let roundWinMessage = "";
+let finalWinner = "";
+let gameOver = false;
+
+//-----------------Game Functionality----------------------
 
 //This returns the computer's selection: Rocks, paper, or scissors.
 function computerPlay() {
   const play = Math.floor(Math.random() * 4);
   if (play == 1 || play == 0) {
-    console.log("Computer : Rock");
+    computerPick = "Rock";
     return "Rock";
   } else if (play == 2) {
-    console.log("Computer : Paper");
+    computerPick = "Paper";
     return "Paper";
   } else if (play == 3) {
-    console.log("Computer : Scissors");
+    computerPick = "Scissors";
     return "Scissors";
   }
 }
@@ -21,38 +28,40 @@ function computerPlay() {
 function playRound(playerSelection, computerSelection) {
   console.log("Player: " + playerSelection);
   if (playerSelection == "Rock" && computerSelection == "Rock") {
-    console.log("It's a tie! Rock vs Rock.");
+    roundWinMessage = "It's a tie! Rock vs Rock.";
   } else if (playerSelection == "Rock" && computerSelection == "Paper") {
-    console.log("You lose! Paper beats Rock.");
+    roundWinMessage = "You lose! Paper beats Rock.";
     computerScore += 1;
   } else if (playerSelection == "Rock" && computerSelection == "Scissors") {
-    console.log("You win! Rock beats Scissors.");
+    roundWinMessage = "You win! Rock beats Scissors.";
     playerScore += 1;
   } else if (playerSelection == "Paper" && computerSelection == "Rock") {
-    console.log("You win! Paper beats Rock.");
+    roundWinMessage = "You win! Paper beats Rock.";
     playerScore += 1;
   } else if (playerSelection == "Paper" && computerSelection == "Paper") {
-    console.log("It's a tie! Paper vs Paper.");
+    roundWinMessage = "It's a tie! Paper vs Paper.";
   } else if (playerSelection == "Paper" && computerSelection == "Scissors") {
-    console.log("You lose! Scissors beats Paper.");
+    roundWinMessage = "You lose! Scissors beats Paper.";
     computerScore += 1;
   } else if (playerSelection == "Scissors" && computerSelection == "Rock") {
-    console.log("You lose! Rock beats Scissors.");
+    roundWinMessage = "You lose! Rock beats Scissors.";
     computerScore += 1;
   } else if (playerSelection == "Scissors" && computerSelection == "Paper") {
-    console.log("You win! Scissors beats paper.");
+    roundWinMessage = "You win! Scissors beats paper.";
     playerScore += 1;
   } else if (playerSelection == "Scissors" && computerSelection == "Scissors") {
-    console.log("It's a tie! Scissors vs Scissors.");
+    roundWinMessage = "It's a tie! Scissors vs Scissors.";
   }
 }
 
-//This determines the winner of the game.
+//This determines the winner of the game after five games.
 function gameWinner() {
   if (playerScore == 5) {
-    console.log("You've won the game!");
+    finalWinner = "You've won the game!";
+    gameOver = true;
   } else if (computerScore == 5) {
-    console.log("The computer wins this game.");
+    finalWinner = "The computer wins this game.";
+    gameOver = true;
   }
 }
 
@@ -61,22 +70,60 @@ document.querySelectorAll(".btn").forEach((item) => {
   item.addEventListener("click", (event) => {
     roundNumber += 1;
     if (item.id == "rock") {
+      playerPick = "Rock";
       playRound("Rock", computerPlay());
     }
     if (item.id == "paper") {
+      playerPick = "Paper";
       playRound("Paper", computerPlay());
     }
     if (item.id == "scissors") {
+      playerPick = "Scissors";
       playRound("Scissors", computerPlay());
     }
-    //Here the results are shown in the console.
-    console.log("Round: " + roundNumber);
-    console.log(
-      "Score: Player: " + playerScore + " Computer: " + computerScore
-    );
-    console.log(
-      "--------------------------------------------------------------"
-    );
+
     gameWinner();
+    showResults();
   });
 });
+
+// - ------------- Showing Results in the DOM -----------------------
+
+function showResults() {
+  const results = document.getElementById("results");
+
+  //Creating the elements to show
+  const rounds = document.createElement("div");
+  const roundNumberP = document.createElement("h3");
+  const computerPickP = document.createElement("p");
+  const playerPickP = document.createElement("p");
+  const winningRoundMessageP = document.createElement("p");
+  const scoreMessageP = document.createElement("p");
+  const wonGameMessageP = document.createElement("p");
+
+  //Assigning the content to the elements
+  roundNumberP.textContent = "Round: " + roundNumber;
+  computerPickP.textContent = "Computer: " + computerPick;
+  playerPickP.textContent = "Player: " + playerPick;
+  winningRoundMessageP.textContent = roundWinMessage;
+  scoreMessageP.textContent =
+    "Score: Player: " + playerScore + " --- Computer: " + computerScore;
+  wonGameMessageP.textContent = finalWinner;
+
+  //Adding the elements to the DOM
+  rounds.appendChild(roundNumberP);
+  rounds.appendChild(computerPickP);
+  rounds.appendChild(playerPickP);
+  rounds.appendChild(winningRoundMessageP);
+  rounds.appendChild(scoreMessageP);
+  if (gameOver == true) {
+    rounds.appendChild(wonGameMessageP);
+    //Resetting the game after the final round.
+    gameOver = false;
+    roundNumber = 0;
+    playerScore = 0;
+    computerScore = 0;
+  }
+
+  results.appendChild(rounds);
+}
