@@ -102,8 +102,11 @@ function showResults() {
   const playerPickP = document.createElement("p");
   playerPickP.classList = "optionPicked";
   const winningRoundMessageP = document.createElement("p");
+  winningRoundMessageP.classList = "centeredMessages";
   const scoreMessageP = document.createElement("p");
+  scoreMessageP.classList = "centeredMessages";
   const wonGameMessageP = document.createElement("p");
+  wonGameMessageP.classList = "centeredMessages";
 
   //Assigning the content to the elements
   roundNumberP.textContent = "Round: " + roundNumber;
