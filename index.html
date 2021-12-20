@@ -4,16 +4,26 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Salsa&family=Shadows+Into+Light&display=swap"
+      rel="stylesheet"
+    />
     <script src="script.js" defer></script>
+    <link rel="stylesheet" href="style.css" />
     <title>Rock Paper Scissors</title>
   </head>
   <body>
-    <div class="main">
-      <h1>Rock Paper Scissors</h1>
-      <button id="rock" class="btn">Rock</button>
-      <button id="paper" class="btn">Paper</button>
-      <button id="scissors" class="btn">Scissors</button>
+    <div class="container">
+      <div class="main">
+        <h1>Rock-Paper-Scissors</h1>
+        <p class="instructions">Press a button to play against the computer.</p>
+        <button id="rock" class="btn">Rock</button>
+        <button id="paper" class="btn">Paper</button>
+        <button id="scissors" class="btn">Scissors</button>
+      </div>
+      <div class="results" id="results"></div>
     </div>
-    <div class="results" id="results"></div>
   </body>
 </html>

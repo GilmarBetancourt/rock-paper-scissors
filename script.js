@@ -94,9 +94,13 @@ function showResults() {
 
   //Creating the elements to show
   const rounds = document.createElement("div");
-  const roundNumberP = document.createElement("h3");
+  rounds.classList = "roundsBox";
+  const roundNumberP = document.createElement("p");
+  roundNumberP.classList = "roundNumber";
   const computerPickP = document.createElement("p");
+  computerPickP.classList = "optionPicked";
   const playerPickP = document.createElement("p");
+  playerPickP.classList = "optionPicked";
   const winningRoundMessageP = document.createElement("p");
   const scoreMessageP = document.createElement("p");
   const wonGameMessageP = document.createElement("p");
