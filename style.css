@@ -90,7 +90,7 @@ button {
 
 /* width */
 ::-webkit-scrollbar {
-  width: 20px;
+  width: 15px;
 }
 
 /* Track */
@@ -136,5 +136,14 @@ button {
 
   .roundsBox {
     width: 80%;
+  }
+
+  .results {
+    height: 60%;
+  }
+
+  .centeredMessages {
+    margin-left: 10px;
+    margin-right: 10px;
   }
 }

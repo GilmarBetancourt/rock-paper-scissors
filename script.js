@@ -114,7 +114,7 @@ function showResults() {
   playerPickP.textContent = "Player: " + playerPick;
   winningRoundMessageP.textContent = roundWinMessage;
   scoreMessageP.textContent =
-    "Score: Player: " + playerScore + " --- Computer: " + computerScore;
+    "Score: Player: " + playerScore + " -- Computer: " + computerScore;
   wonGameMessageP.textContent = finalWinner;
 
   //Adding the elements to the DOM
